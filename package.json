@@ -1,7 +1,7 @@
 {
   "name": "todo-today",
   "description": "Simple Todoist CLI",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "author": "Caleb Larsen @cmlarsen",
   "bin": {
     "today": "bin/run"
