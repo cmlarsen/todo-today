@@ -19,7 +19,7 @@ $ npm install -g todo-today
 $ todo-today COMMAND
 running command...
 $ todo-today (-v|--version|version)
-todo-today/0.2.2 darwin-x64 node-v15.2.1
+todo-today/0.3.0 darwin-x64 node-v15.2.1
 $ todo-today --help [COMMAND]
 USAGE
   $ todo-today COMMAND
@@ -64,7 +64,7 @@ EXAMPLE
   $ today init [Your Key Here]
 ```
 
-_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.2.2/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.0/src/commands/init.ts)_
 
 ## `todo-today list`
 
@@ -81,5 +81,5 @@ EXAMPLE
   $ today todo
 ```
 
-_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.2.2/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.0/src/commands/list.ts)_
 <!-- commandsstop -->
