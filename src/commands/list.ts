@@ -4,8 +4,9 @@ import todoist from "../utils/todoist";
 import * as moment from "moment";
 import { cli } from "cli-ux";
 import chalk = require("chalk");
-//@ts-ignore
+// @ts-expect-error
 import * as wrapText from "wrap-text";
+import { readToken } from "../utils/token";
 
 interface Groupings {
   [key: string]: {
@@ -23,21 +24,22 @@ export default class List extends Command {
   };
 
   async run() {
-    const { args, flags } = this.parse(List);
-    cli.action.start("Fetching todos");
-    const { projects } = (await todoist.sync([
+    // TODO: Create parent class that hands us all the todoist data and keys
+    const token = readToken(this.config.configDir);
+    cli.action.start("Hey Todoist, what's up");
+    const { projects } = (await todoist.sync(token, [
       "projects",
       "sections",
       "labels",
     ])) as { projects: TodoistProject[] };
-    const overdueItems = await todoist.fetchOverdue();
-    const items = await todoist.fetchToday();
-    cli.action.stop();
+    const overdueItems = await todoist.fetchOverdue(token);
+    const items = await todoist.fetchToday(token);
+    cli.action.stop("\n");
 
     const groupings = items.reduce((groups: Groupings, item) => {
       const project = projects.find((p: any) => p.id === item.project_id);
       if (!project) return groups;
-      if (!groups.hasOwnProperty(project.id)) {
+      if (!groups[project.id]) {
         groups[project.id] = {
           name: project.name,
           items: [],
@@ -74,7 +76,7 @@ export default class List extends Command {
           },
         },
         {
-          sort: "priority",
+          sort: "order",
           "no-header": true,
         }
       );
@@ -93,14 +95,14 @@ export default class List extends Command {
         },
         content: {
           minWidth: 55,
-          get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)), //+ chalk.gray(` (${row.url})`),
+          get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)),
         },
         url: {
           get: (row) => chalk.keyword("gray")(row.url),
         },
       },
       {
-        sort: "priority",
+        sort: "order",
         "no-header": true,
       }
     );

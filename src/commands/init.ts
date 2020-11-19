@@ -1,4 +1,4 @@
-import { saveToken, tokenPath } from "./../utils/token";
+import { saveToken } from "./../utils/token";
 import { Command, flags } from "@oclif/command";
 
 export default class Init extends Command {
@@ -16,7 +16,7 @@ export default class Init extends Command {
     const { args } = this.parse(Init);
 
     if (args.token) {
-      saveToken(args.token);
+      saveToken(args.token, this.config.configDir);
     } else {
       throw new Error("You forgot to add your api token");
     }

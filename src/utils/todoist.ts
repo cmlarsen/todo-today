@@ -1,5 +1,4 @@
 import axios from "axios";
-import { readToken } from "./token";
 
 const todoistSyncUrl = "https://api.todoist.com/sync/v8/sync";
 const todoistRESTUrl = "https://api.todoist.com/rest/v1";
@@ -56,11 +55,10 @@ export type TodoistResource =
   | "notification_settings"
   | "user_plan_limits";
 
-//get all completed items: https://developer.todoist.com/sync/v8/#get-all-completed-items
-//only available to premium users
+// Note: get all completed items: https://developer.todoist.com/sync/v8/#get-all-completed-items
+// only available to premium users
 
-async function sync(resources: TodoistResource[]) {
-  const token = readToken();
+async function sync(token: string, resources: TodoistResource[]) {
   const res = await axios.post(todoistSyncUrl, {
     token,
     sync_token: "*",
@@ -70,9 +68,7 @@ async function sync(resources: TodoistResource[]) {
   return res.data;
 }
 
-async function fetchToday(): Promise<TodoistTask[]> {
-  const token = readToken();
-
+async function fetchToday(token: string): Promise<TodoistTask[]> {
   const res = await axios.get(todoistRESTUrl + "/tasks", {
     headers: { Authorization: "Bearer " + token },
     params: {
@@ -82,9 +78,7 @@ async function fetchToday(): Promise<TodoistTask[]> {
 
   return res.data;
 }
-async function fetchOverdue(): Promise<TodoistTask[]> {
-  const token = readToken();
-
+async function fetchOverdue(token: string): Promise<TodoistTask[]> {
   const res = await axios.get(todoistRESTUrl + "/tasks", {
     headers: { Authorization: "Bearer " + token },
     params: {

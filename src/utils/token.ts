@@ -1,14 +1,15 @@
 import * as fs from "fs";
+import * as path from "path";
 
-const folder = "./cache";
-const tokenPath = `${folder}/.todoist-token`;
+const tokenFile = `.todoist-token`;
+
 let _token: undefined | string;
-function saveToken(key: string) {
+function saveToken(key: string, configDir: string) {
   return new Promise((resolve, reject) => {
-    if (!fs.existsSync(folder)) {
-      fs.mkdirSync(folder);
+    if (!fs.existsSync(configDir)) {
+      fs.mkdirSync(configDir);
     }
-    fs.writeFile(tokenPath, key, function (err: any) {
+    fs.writeFile(path.join(configDir, tokenFile), key, function (err: any) {
       if (err) {
         reject(new Error(err));
       }
@@ -16,17 +17,17 @@ function saveToken(key: string) {
     });
   });
 }
-function readToken() {
+function readToken(configDir: string) {
   if (!_token) {
     try {
-      _token = fs.readFileSync(tokenPath, "utf8");
-    } catch (e) {
+      _token = fs.readFileSync(path.join(configDir, tokenFile), "utf8");
+    } catch (error) {
       throw new Error(
-        "Can't find your API key. Did you forget to run `today init` first?"
+        "Can't find your API key. Did you forget to run `todo-today init` first?"
       );
     }
   }
   return _token;
 }
 
-export { saveToken, readToken, tokenPath };
+export { saveToken, readToken };
