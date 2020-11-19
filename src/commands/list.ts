@@ -104,12 +104,5 @@ export default class List extends Command {
         "no-header": true,
       }
     );
-
-    // const name = flags.name ?? "world";
-
-    // this.log(`hello ${name} from ./src/commands/hello.ts`);
-    if (args.file && flags.force) {
-      this.log(`you input --force and --file: ${args.file}`);
-    }
   }
 }
