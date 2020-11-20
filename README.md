@@ -21,36 +21,33 @@ To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then t
 [![License](https://img.shields.io/npm/l/todo-today.svg)](https://github.com/cmlarsen/todo-today/blob/master/package.json)
 
 <!-- toc -->
-
-- [Usage](#usage)
-- [Commands](#commands)
+* [todo-today](#todo-today)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g todo-today
 $ todo-today COMMAND
 running command...
 $ todo-today (-v|--version|version)
-todo-today/0.3.0 darwin-x64 node-v15.2.1
+todo-today/0.3.1 darwin-x64 node-v15.2.1
 $ todo-today --help [COMMAND]
 USAGE
   $ todo-today COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-
-- [`todo-today help [COMMAND]`](#todo-today-help-command)
-- [`todo-today init [TOKEN]`](#todo-today-init-token)
-- [`todo-today list`](#todo-today-list)
+* [`todo-today help [COMMAND]`](#todo-today-help-command)
+* [`todo-today init [TOKEN]`](#todo-today-init-token)
+* [`todo-today list`](#todo-today-list)
 
 ## `todo-today help [COMMAND]`
 
@@ -81,10 +78,10 @@ OPTIONS
   -h, --help  show CLI help
 
 EXAMPLE
-  $ today init [Your Key Here]
+  $ today init TOKEN
 ```
 
-_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.0/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/init.ts)_
 
 ## `todo-today list`
 
@@ -96,11 +93,11 @@ USAGE
 
 OPTIONS
   -h, --help  show CLI help
+  -u, --urls
 
 EXAMPLE
   $ today todo
 ```
 
-_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.0/src/commands/list.ts)_
-
+_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/list.ts)_
 <!-- commandsstop -->
