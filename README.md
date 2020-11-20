@@ -1,6 +1,19 @@
 # todo-today
 
-What to do today
+This is a very bare bones interface for Todoist. You will need your Todoist API token, found in `Todoist Settings -> Integrations -> Api Token`
+
+---
+
+**Note:** If this is your first time installing a global NPM package you may see an error that looks like this:
+
+```sh-session
+checkPermissions Missing write access to /usr/local/lib/node_modules
+...
+```
+
+To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then try the install again.
+
+---
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
 [![Version](https://img.shields.io/npm/v/todo-today.svg)](https://npmjs.org/package/todo-today)
@@ -16,15 +29,6 @@ What to do today
 # Usage
 
 <!-- usage -->
-
-**Note:** If this is your first time installing a global NPM package you may see an error that looks like this:
-
-```sh-session
-checkPermissions Missing write access to /usr/local/lib/node_modules
-...
-```
-
-To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then try the install again.
 
 ```sh-session
 $ npm install -g todo-today
