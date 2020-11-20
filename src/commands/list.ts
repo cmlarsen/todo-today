@@ -7,6 +7,7 @@ import chalk = require("chalk");
 // @ts-expect-error
 import * as wrapText from "wrap-text";
 import { readToken } from "../utils/token";
+import { table } from "cli-ux/lib/styled/table";
 
 interface Groupings {
   [key: string]: {
@@ -21,10 +22,14 @@ export default class List extends Command {
 
   static flags = {
     help: flags.help({ char: "h" }),
+    urls: flags.boolean({ char: "u" }),
   };
 
   async run() {
+    const { flags } = this.parse(List);
+    const showUrls = flags.urls;
     // TODO: Create parent class that hands us all the todoist data and keys
+    // TODO: Refactor all of this nonesense.
     const token = readToken(this.config.configDir);
     cli.action.start("Hey Todoist, what's up");
     const { projects } = (await todoist.sync(token, [
@@ -51,60 +56,66 @@ export default class List extends Command {
     }, {});
 
     this.log(chalk.green.bold(`Today ${new Date().toLocaleDateString()}`));
+    if (Object.entries(groupings).length === 0) {
+      this.log(chalk.keyword("pink")("Nothing today!"));
+    }
     Object.entries(groupings).forEach(([_, group]) => {
       this.log(chalk.blue.bold(group.name));
-      cli.table(
-        group.items.map((item) => ({
-          ...item,
-          status: item?.checked ? chalk.green("✔") : chalk.white("☐"),
-        })),
-        {
-          status: {},
-          content: {
-            minWidth: 55,
-            get: (row) => {
-              const dueTime = row.due?.datetime
-                ? " @" + moment(row.due?.datetime).format("h:mma")
-                : "";
-              const text =
-                chalk.yellow(wrapText(row.content, 55)) + chalk.white(dueTime);
-              return text;
-            },
-          },
-          url: {
-            get: (row) => chalk.gray(row.url),
+      const tableData = group.items.map((item) => ({
+        ...item,
+        status: item?.checked ? chalk.green("✔") : chalk.white("☐"),
+      }));
+      const cols: table.Columns<typeof tableData[number]> = {
+        status: {},
+        content: {
+          minWidth: 55,
+          get: (row) => {
+            const dueTime = row.due?.datetime
+              ? " @" + moment(row.due?.datetime).format("h:mma")
+              : "";
+            const text =
+              chalk.yellow(wrapText(row.content, 55)) + chalk.white(dueTime);
+            return text;
           },
         },
-        {
-          sort: "order",
-          "no-header": true,
-        }
-      );
+      };
+
+      if (showUrls) {
+        cols.urls = {
+          get: (row) => chalk.gray(row.url),
+        };
+      }
+
+      cli.table(tableData, cols, {
+        sort: "order",
+        "no-header": true,
+      });
     });
 
     this.log(chalk.red.bold("\nOverdue"));
-    cli.table(
-      overdueItems.map((item) => ({
-        ...item,
-        projectName: projects.find(({ id }) => id === item.project_id)?.name,
-      })),
-      {
-        projectName: {
-          minWidth: 10,
-          get: (row) => chalk.keyword("gray")(row.projectName),
-        },
-        content: {
-          minWidth: 55,
-          get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)),
-        },
-        url: {
-          get: (row) => chalk.keyword("gray")(row.url),
-        },
+    const overdueTableData = overdueItems.map((item) => ({
+      ...item,
+      projectName: projects.find(({ id }) => id === item.project_id)?.name,
+    }));
+    const overdueCols: table.Columns<typeof overdueTableData[number]> = {
+      projectName: {
+        minWidth: 10,
+        get: (row) => chalk.keyword("gray")(row.projectName),
       },
-      {
-        sort: "order",
-        "no-header": true,
-      }
-    );
+      content: {
+        minWidth: 55,
+        get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)),
+      },
+    };
+
+    if (showUrls) {
+      overdueCols.urls = {
+        get: (row) => chalk.gray(row.url),
+      };
+    }
+    cli.table(overdueTableData, overdueCols, {
+      sort: "order",
+      "no-header": true,
+    });
   }
 }
