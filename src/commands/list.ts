@@ -16,9 +16,11 @@ interface Groupings {
   };
 }
 export default class List extends Command {
+  static aliases = ["l", "today"];
+
   static description = "Lists your tasks for today along with overdue items";
 
-  static examples = [`$ today todo`];
+  static examples = [`$ today-todo list`, `$ today-todo list -ju`];
 
   static flags = {
     help: flags.help({ char: "h" }),

@@ -2,6 +2,8 @@
 
 This is a very bare bones interface for Todoist. You will need your Todoist API token, found in `Todoist Settings -> Integrations -> Api Token`
 
+**Note:** This is under active development and commands will likely change.
+
 ---
 
 **Note:** If this is your first time installing a global NPM package you may see an error that looks like this:
@@ -21,14 +23,16 @@ To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then t
 [![License](https://img.shields.io/npm/l/todo-today.svg)](https://github.com/cmlarsen/todo-today/blob/master/package.json)
 
 <!-- toc -->
-* [todo-today](#todo-today)
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [todo-today](#todo-today)
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
+
 ```sh-session
 $ npm install -g todo-today
 $ todo-today COMMAND
@@ -40,14 +44,16 @@ USAGE
   $ todo-today COMMAND
 ...
 ```
+
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
-* [`todo-today help [COMMAND]`](#todo-today-help-command)
-* [`todo-today init [TOKEN]`](#todo-today-init-token)
-* [`todo-today list`](#todo-today-list)
+
+- [`todo-today help [COMMAND]`](#todo-today-help-command)
+- [`todo-today init [TOKEN]`](#todo-today-init-token)
+- [`todo-today list`](#todo-today-list)
 
 ## `todo-today help [COMMAND]`
 
@@ -100,4 +106,5 @@ EXAMPLE
 ```
 
 _See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/list.ts)_
+
 <!-- commandsstop -->
