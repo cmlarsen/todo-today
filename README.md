@@ -1,5 +1,4 @@
-todo-today
-==========
+# todo-today
 
 What to do today
 
@@ -9,11 +8,24 @@ What to do today
 [![License](https://img.shields.io/npm/l/todo-today.svg)](https://github.com/cmlarsen/todo-today/blob/master/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
+**Note:** If this is your first time installing a global NPM package you may see an error that looks like this:
+
+```sh-session
+checkPermissions Missing write access to /usr/local/lib/node_modules
+...
+```
+
+To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then try the install again.
+
 ```sh-session
 $ npm install -g todo-today
 $ todo-today COMMAND
@@ -25,12 +37,16 @@ USAGE
   $ todo-today COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`todo-today help [COMMAND]`](#todo-today-help-command)
-* [`todo-today init [TOKEN]`](#todo-today-init-token)
-* [`todo-today list`](#todo-today-list)
+
+- [`todo-today help [COMMAND]`](#todo-today-help-command)
+- [`todo-today init [TOKEN]`](#todo-today-init-token)
+- [`todo-today list`](#todo-today-list)
 
 ## `todo-today help [COMMAND]`
 
@@ -82,4 +98,5 @@ EXAMPLE
 ```
 
 _See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.0/src/commands/list.ts)_
+
 <!-- commandsstop -->
