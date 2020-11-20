@@ -16,18 +16,27 @@ interface Groupings {
   };
 }
 export default class List extends Command {
-  static description = "Lists your todos for today";
+  static description = "Lists your tasks for today along with overdue items";
 
   static examples = [`$ today todo`];
 
   static flags = {
     help: flags.help({ char: "h" }),
-    urls: flags.boolean({ char: "u" }),
+    justToday: flags.boolean({
+      char: "j",
+      description:
+        "Only shows tasks that are due today. Hides overdue and other tasks not explicitly due today.",
+    }),
+    urls: flags.boolean({
+      char: "u",
+      description: "Displays the Todoist URLs for each task ",
+    }),
   };
 
   async run() {
     const { flags } = this.parse(List);
     const showUrls = flags.urls;
+
     // TODO: Create parent class that hands us all the todoist data and keys
     // TODO: Refactor all of this nonesense.
     const token = readToken(this.config.configDir);
@@ -37,7 +46,8 @@ export default class List extends Command {
       "sections",
       "labels",
     ])) as { projects: TodoistProject[] };
-    const overdueItems = await todoist.fetchOverdue(token);
+    const overdueItems =
+      !flags.justToday && (await todoist.fetchOverdue(token));
     const items = await todoist.fetchToday(token);
     cli.action.stop("\n");
 
@@ -92,30 +102,32 @@ export default class List extends Command {
       });
     });
 
-    this.log(chalk.red.bold("\nOverdue"));
-    const overdueTableData = overdueItems.map((item) => ({
-      ...item,
-      projectName: projects.find(({ id }) => id === item.project_id)?.name,
-    }));
-    const overdueCols: table.Columns<typeof overdueTableData[number]> = {
-      projectName: {
-        minWidth: 10,
-        get: (row) => chalk.keyword("gray")(row.projectName),
-      },
-      content: {
-        minWidth: 55,
-        get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)),
-      },
-    };
-
-    if (showUrls) {
-      overdueCols.urls = {
-        get: (row) => chalk.gray(row.url),
+    if (overdueItems) {
+      this.log(chalk.red.bold("\nOverdue"));
+      const overdueTableData = overdueItems.map((item) => ({
+        ...item,
+        projectName: projects.find(({ id }) => id === item.project_id)?.name,
+      }));
+      const overdueCols: table.Columns<typeof overdueTableData[number]> = {
+        projectName: {
+          minWidth: 10,
+          get: (row) => chalk.keyword("gray")(row.projectName),
+        },
+        content: {
+          minWidth: 55,
+          get: (row) => chalk.keyword("lightgray")(wrapText(row.content, 55)),
+        },
       };
+
+      if (showUrls) {
+        overdueCols.urls = {
+          get: (row) => chalk.gray(row.url),
+        };
+      }
+      cli.table(overdueTableData, overdueCols, {
+        sort: "order",
+        "no-header": true,
+      });
     }
-    cli.table(overdueTableData, overdueCols, {
-      sort: "order",
-      "no-header": true,
-    });
   }
 }
