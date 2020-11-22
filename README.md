@@ -23,16 +23,14 @@ To fix this you can run `sudo chown -R $USER /usr/local/lib/node_modules` then t
 [![License](https://img.shields.io/npm/l/todo-today.svg)](https://github.com/cmlarsen/todo-today/blob/master/package.json)
 
 <!-- toc -->
-
-- [todo-today](#todo-today)
-- [Usage](#usage)
-- [Commands](#commands)
+* [todo-today](#todo-today)
+* [Usage](#usage)
+* [Commands](#commands)
 <!-- tocstop -->
 
 # Usage
 
 <!-- usage -->
-
 ```sh-session
 $ npm install -g todo-today
 $ todo-today COMMAND
@@ -44,16 +42,31 @@ USAGE
   $ todo-today COMMAND
 ...
 ```
-
 <!-- usagestop -->
 
 # Commands
 
 <!-- commands -->
+* [`todo-today copy [FILE]`](#todo-today-copy-file)
+* [`todo-today help [COMMAND]`](#todo-today-help-command)
+* [`todo-today init [TOKEN]`](#todo-today-init-token)
+* [`todo-today list`](#todo-today-list)
 
-- [`todo-today help [COMMAND]`](#todo-today-help-command)
-- [`todo-today init [TOKEN]`](#todo-today-init-token)
-- [`todo-today list`](#todo-today-list)
+## `todo-today copy [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ todo-today copy [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/copy.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/copy.ts)_
 
 ## `todo-today help [COMMAND]`
 
@@ -91,20 +104,25 @@ _See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0
 
 ## `todo-today list`
 
-Lists your todos for today
+Lists your tasks for today along with overdue items
 
 ```
 USAGE
   $ todo-today list
 
 OPTIONS
-  -h, --help  show CLI help
-  -u, --urls
+  -h, --help       show CLI help
+  -j, --justToday  Only shows tasks that are due today. Hides overdue and other tasks not explicitly due today.
+  -u, --urls       Displays the Todoist URLs for each task
 
-EXAMPLE
-  $ today todo
+ALIASES
+  $ todo-today l
+  $ todo-today today
+
+EXAMPLES
+  $ today-todo list
+  $ today-todo list -ju
 ```
 
 _See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/list.ts)_
-
 <!-- commandsstop -->

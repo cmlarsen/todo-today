@@ -31,7 +31,7 @@ export interface TodoistTask {
   id: number;
   label_ids: number[];
   order: number;
-  priority: 1;
+  priority: number;
   project_id: number;
   section_id: number;
   parent_id?: number;

@@ -14,7 +14,9 @@
     "axios": "^0.21.0",
     "chalk": "^4.1.0",
     "cli-ux": "^5.5.1",
+    "clipboardy": "^2.3.0",
     "moment": "^2.29.1",
+    "strip-ansi": "^6.0.0",
     "tslib": "^1",
     "wrap-text": "^1.0.9"
   },
