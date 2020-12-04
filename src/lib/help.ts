@@ -26,7 +26,7 @@ export default class CustomHelp extends Help {
   showRootHelp(): void {
     let rootTopics = this.sortedTopics;
     let rootCommands = this.sortedCommands;
-    let shortcuts: Shortcut[] = this.shortcuts;
+    const shortcuts = this.shortcuts as Shortcut[];
 
     console.log(this.formatRoot());
     console.log("");

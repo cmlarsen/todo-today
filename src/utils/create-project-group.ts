@@ -8,8 +8,6 @@ interface Group {
   items: TaskTableRowData[];
 }
 
-// If the parent exists then add a return and concat the child
-// └
 function nest(items: TaskTableRowData[]) {
   // find all items without parents
   // find all direct children of parents: repeat until done
@@ -19,7 +17,7 @@ function nest(items: TaskTableRowData[]) {
     return !parentExists || !hasParent;
   });
 
-  function _nest(levelItems: any[], _items: any[]) {
+  function _nest(levelItems: TaskTableRowData[], _items: TaskTableRowData[]) {
     const kids = levelItems.map((item) => {
       let children = _items.filter((i) => i.parentId === item.id);
 
@@ -36,7 +34,7 @@ function nest(items: TaskTableRowData[]) {
   }
   const nested = _nest(topLevelItems, items);
 
-  function _createTitle(item: any[], deep = 0) {
+  function _createTitle(item: TaskTableRowData, deep = 0) {
     let title =
       item.title +
       (item.dueDatetime

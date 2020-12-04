@@ -15,6 +15,7 @@ export interface TaskTableRowData {
   dueDate?: string | Date;
   dueDatetime?: string | Date;
   parentId?: number;
+  children?: TaskTableRowData[];
 }
 
 export interface TaskTableProps {
