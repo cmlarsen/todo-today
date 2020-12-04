@@ -135,9 +135,9 @@ export default class List extends Command {
         if (flags["show-urls"]) {
           columns.push("url");
         }
-        if (flags["show-when-due"]) {
-          columns.push("dueDatetime");
-        }
+        // if (flags["show-when-due"]) {
+        //   columns.push("dueDatetime");
+        // }
         output += createTaskTable({
           title: group.name,
           tasks: group.items,
