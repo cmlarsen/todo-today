@@ -2,5 +2,7 @@
   "deepscan.enable": true,
   "cSpell.words": [
     "clipboardy"
-  ]
+  ],
+  "editor.quickSuggestions": false,
+  "editor.suggestOnTriggerCharacters": false
 }

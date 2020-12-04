@@ -4,20 +4,28 @@
   "version": "0.3.1",
   "author": "Caleb Larsen @cmlarsen",
   "bin": {
-    "todo-today": "bin/run"
+    "todo": "bin/run"
   },
   "bugs": "https://github.com/cmlarsen/todo-today/issues",
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "@oclif/plugin-autocomplete": "^0.2.0",
     "@oclif/plugin-help": "^3",
+    "@oclif/plugin-not-found": "^1.2.4",
+    "@types/inquirer": "^7.3.1",
+    "@types/wrap-ansi": "^3.0.0",
     "axios": "^0.21.0",
     "chalk": "^4.1.0",
     "cli-ux": "^5.5.1",
     "clipboardy": "^2.3.0",
+    "conf-cli": "^0.1.9",
+    "inquirer": "^7.3.3",
+    "lodash": "^4.17.20",
     "moment": "^2.29.1",
     "strip-ansi": "^6.0.0",
     "tslib": "^1",
+    "wrap-ansi": "^7.0.0",
     "wrap-text": "^1.0.9"
   },
   "devDependencies": {
@@ -54,10 +62,17 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
+    "helpClass": "./src/lib/help",
     "commands": "./lib/commands",
+    "topics": {
+      "commands:create": {
+        "description": "create a custom command"
+      }
+    },
     "bin": "todo-today",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-not-found"
     ]
   },
   "repository": "cmlarsen/todo-today",

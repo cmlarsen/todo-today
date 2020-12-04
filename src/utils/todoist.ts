@@ -36,6 +36,7 @@ export interface TodoistTask {
   section_id: number;
   parent_id?: number;
   url: string;
+  created: string;
   checked: 1 | 0;
 }
 export type TodoistResource =

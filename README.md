@@ -47,26 +47,28 @@ USAGE
 # Commands
 
 <!-- commands -->
-* [`todo-today copy [FILE]`](#todo-today-copy-file)
+* [`todo-today create-shortcut`](#todo-today-create-shortcut)
 * [`todo-today help [COMMAND]`](#todo-today-help-command)
 * [`todo-today init [TOKEN]`](#todo-today-init-token)
-* [`todo-today list`](#todo-today-list)
+* [`todo-today list [FILE]`](#todo-today-list-file)
+* [`todo-today list-shortcuts [NAME] [FLAGS]`](#todo-today-list-shortcuts-name-flags)
+* [`todo-today shortcuts:create`](#todo-today-shortcutscreate)
+* [`todo-today shortcuts:delete [FILE]`](#todo-today-shortcutsdelete-file)
+* [`todo-today shortcuts:list [NAME] [FLAGS]`](#todo-today-shortcutslist-name-flags)
 
-## `todo-today copy [FILE]`
+## `todo-today create-shortcut`
 
-describe the command here
+Creates a shortcut to a list view
 
 ```
 USAGE
-  $ todo-today copy [FILE]
+  $ todo-today create-shortcut
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
+  -h, --help  show CLI help
 ```
 
-_See code: [src/commands/copy.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/copy.ts)_
+_See code: [src/commands/create-shortcut.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/create-shortcut.ts)_
 
 ## `todo-today help [COMMAND]`
 
@@ -102,18 +104,19 @@ EXAMPLE
 
 _See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/init.ts)_
 
-## `todo-today list`
+## `todo-today list [FILE]`
 
-Lists your tasks for today along with overdue items
+Lists your tasks due today.
 
 ```
 USAGE
-  $ todo-today list
+  $ todo-today list [FILE]
 
 OPTIONS
-  -h, --help       show CLI help
-  -j, --justToday  Only shows tasks that are due today. Hides overdue and other tasks not explicitly due today.
-  -u, --urls       Displays the Todoist URLs for each task
+  -c, --copy-to-clipboard  Copies the output to the clipboard.
+  -h, --help               show CLI help
+  -o, --show-overdue       Include overdue items.
+  -u, --show-urls          Displays the Todoist URLs for each task.
 
 ALIASES
   $ todo-today l
@@ -121,8 +124,66 @@ ALIASES
 
 EXAMPLES
   $ today-todo list
-  $ today-todo list -ju
+  $ today-todo list -oc
 ```
 
 _See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/list.ts)_
+
+## `todo-today list-shortcuts [NAME] [FLAGS]`
+
+Lists shortcuts
+
+```
+USAGE
+  $ todo-today list-shortcuts [NAME] [FLAGS]
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/list-shortcuts.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/list-shortcuts.ts)_
+
+## `todo-today shortcuts:create`
+
+Creates a shortcut to a list view
+
+```
+USAGE
+  $ todo-today shortcuts:create
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/shortcuts/create.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/shortcuts/create.ts)_
+
+## `todo-today shortcuts:delete [FILE]`
+
+describe the command here
+
+```
+USAGE
+  $ todo-today shortcuts:delete [FILE]
+
+OPTIONS
+  -f, --force
+  -h, --help       show CLI help
+  -n, --name=name  name to print
+```
+
+_See code: [src/commands/shortcuts/delete.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/shortcuts/delete.ts)_
+
+## `todo-today shortcuts:list [NAME] [FLAGS]`
+
+Lists shortcuts
+
+```
+USAGE
+  $ todo-today shortcuts:list [NAME] [FLAGS]
+
+OPTIONS
+  -h, --help  show CLI help
+```
+
+_See code: [src/commands/shortcuts/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.3.1/src/commands/shortcuts/list.ts)_
 <!-- commandsstop -->
