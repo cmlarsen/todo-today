@@ -57,7 +57,7 @@ export default class TodoToday extends Command {
       const shortcut = shortcuts.find((s) => s.name === args.shortcut);
       if (args.shortcut) {
         if (shortcut?.command === "list") {
-          await List.run(shortcut.flags.map((f) => f));
+          await List.run(shortcut.flags.map((f) => "--" + f));
         }
       } else {
         this.log("Can't find shortcut");
