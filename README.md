@@ -36,7 +36,7 @@ $ npm install -g todo-today
 $ todo-today COMMAND
 running command...
 $ todo-today (-v|--version|version)
-todo-today/0.4.2 darwin-x64 node-v15.2.1
+todo-today/0.4.3 darwin-x64 node-v15.2.1
 $ todo-today --help [COMMAND]
 USAGE
   $ todo-today COMMAND
@@ -86,7 +86,7 @@ EXAMPLE
   $ today init TOKEN
 ```
 
-_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.2/src/commands/init.ts)_
+_See code: [src/commands/init.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.3/src/commands/init.ts)_
 
 ## `todo-today list [FILE]`
 
@@ -116,7 +116,7 @@ EXAMPLES
   $ today-todo list -wrap
 ```
 
-_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.2/src/commands/list.ts)_
+_See code: [src/commands/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.3/src/commands/list.ts)_
 
 ## `todo-today shortcuts:create`
 
@@ -133,7 +133,7 @@ ALIASES
   $ todo-today shortcut:create
 ```
 
-_See code: [src/commands/shortcuts/create.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.2/src/commands/shortcuts/create.ts)_
+_See code: [src/commands/shortcuts/create.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.3/src/commands/shortcuts/create.ts)_
 
 ## `todo-today shortcuts:delete [SHORTCUT-NAME]`
 
@@ -147,7 +147,7 @@ OPTIONS
   -h, --help  show CLI help
 ```
 
-_See code: [src/commands/shortcuts/delete.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.2/src/commands/shortcuts/delete.ts)_
+_See code: [src/commands/shortcuts/delete.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.3/src/commands/shortcuts/delete.ts)_
 
 ## `todo-today shortcuts:list`
 
@@ -164,5 +164,5 @@ ALIASES
   $ todo-today shortcut:list
 ```
 
-_See code: [src/commands/shortcuts/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.2/src/commands/shortcuts/list.ts)_
+_See code: [src/commands/shortcuts/list.ts](https://github.com/cmlarsen/todo-today/blob/v0.4.3/src/commands/shortcuts/list.ts)_
 <!-- commandsstop -->
