@@ -4,7 +4,7 @@
   "version": "0.4.0",
   "author": "Caleb Larsen @cmlarsen",
   "bin": {
-    "todo": "bin/run"
+    "todo-today": "bin/run"
   },
   "bugs": "https://github.com/cmlarsen/todo-today/issues",
   "dependencies": {
