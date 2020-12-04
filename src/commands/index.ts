@@ -3,7 +3,7 @@ import * as Conf from "conf";
 import { readToken, saveToken } from "../utils/token";
 
 import { Command } from "@oclif/command";
-import CustomHelp from "../lib/help";
+import CustomHelp from "../help";
 import List from "./list";
 import { Shortcut } from "./shortcuts/create";
 import { cli } from "cli-ux";

@@ -3,7 +3,7 @@ import * as Conf from "conf";
 import { Command, Topic } from "@oclif/config";
 
 import Help from "@oclif/plugin-help";
-import { Shortcut } from "../commands/shortcuts/create";
+import { Shortcut } from "./commands/shortcuts/create";
 import { renderList } from "@oclif/plugin-help/lib/list";
 
 import chalk = require("chalk");

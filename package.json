@@ -62,13 +62,8 @@
   "license": "MIT",
   "main": "lib/index.js",
   "oclif": {
-    "helpClass": "./src/lib/help",
+    "helpClass": "./lib/help",
     "commands": "./lib/commands",
-    "topics": {
-      "commands:create": {
-        "description": "create a custom command"
-      }
-    },
     "bin": "todo-today",
     "plugins": [
       "@oclif/plugin-help",
