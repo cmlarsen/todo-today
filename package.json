@@ -8,7 +8,7 @@
   },
   "bugs": "https://github.com/cmlarsen/todo-today/issues",
   "dependencies": {
-    "@oclif/command": "^1",
+    "@oclif/command": "^1.8.0",
     "@oclif/config": "^1",
     "@oclif/plugin-autocomplete": "^0.2.0",
     "@oclif/plugin-help": "^3",

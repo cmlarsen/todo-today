@@ -1,5 +1,3 @@
-import * as Conf from "conf";
-
 import { readToken, saveToken } from "../utils/token";
 
 import { Command } from "@oclif/command";
@@ -11,7 +9,7 @@ import createHeader from "../components/create-header";
 import createText from "../components/create-text";
 
 import chalk = require("chalk");
-const config = new Conf();
+import { Shortcuts } from "../utils/shortcut";
 
 // console.log(`hello ${JSON.stringify(config.get("customCommand"), null, 2)}!`);
 
@@ -52,7 +50,7 @@ export default class TodoToday extends Command {
     // TODO: we can use this pattern to have a saved command and pass its flags onward.
     // console.log(`hello ${JSON.stringify(config.get("customCommand"), null, 2)}!`);
     if (args.shortcut) {
-      const shortcuts = config.get("shortcuts", []) as Shortcut[];
+      const shortcuts = Shortcuts.get();
 
       const shortcut = shortcuts.find((s) => s.name === args.shortcut);
       if (args.shortcut) {

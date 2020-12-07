@@ -1,12 +1,7 @@
-import * as Conf from "conf";
-
 import { Command, flags } from "@oclif/command";
 
-import { Shortcut } from "./create";
-
 import chalk = require("chalk");
-
-const config = new Conf();
+import { Shortcuts } from "../../utils/shortcut";
 
 export default class ListShortcuts extends Command {
   static description = `Lists shortcuts`;
@@ -18,7 +13,7 @@ export default class ListShortcuts extends Command {
   };
 
   async run() {
-    const shortcuts = config.get("shortcuts") as Shortcut[];
+    const shortcuts = Shortcuts.get();
     let output = "";
     const shortcutList = shortcuts
       .map((shortcut) => {

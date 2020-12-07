@@ -1,4 +1,3 @@
-import * as Conf from "conf";
 import * as inquirer from "inquirer";
 
 import { Command, flags } from "@oclif/command";
@@ -9,8 +8,7 @@ import createText from "../../components/create-text";
 import log from "../../utils/log";
 
 import chalk = require("chalk");
-
-const config = new Conf();
+import { Shortcuts } from "../../utils/shortcut";
 
 export interface Shortcut {
   name: string;
@@ -64,7 +62,7 @@ export default class CreateShortcut extends Command {
         flags: ["--sort=" + sortBy.sort, ...options.flags],
       };
 
-      const shortcuts = config.get("shortcuts", []) as Shortcut[];
+      const shortcuts = Shortcuts.get();
       this.log("\n");
       const shortcutIndex = shortcuts.findIndex((s) => s.name === name);
       if (shortcutIndex > -1) {
@@ -72,7 +70,7 @@ export default class CreateShortcut extends Command {
       } else {
         shortcuts.push(newShortcut);
       }
-      config.set("shortcuts", shortcuts);
+      Shortcuts.set(shortcuts);
 
       log(
         [

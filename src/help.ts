@@ -7,11 +7,11 @@ import { Shortcut } from "./commands/shortcuts/create";
 import { renderList } from "@oclif/plugin-help/lib/list";
 
 import chalk = require("chalk");
+import { Shortcuts } from "./utils/shortcut";
 
 const { bold } = chalk;
 const indent = require("indent-string");
 
-const config = new Conf();
 //TODO expand help to show custom commands
 export default class CustomHelp extends Help {
   // acts as a "router"
@@ -21,7 +21,7 @@ export default class CustomHelp extends Help {
   // showHelp(args: string[]): void {}
 
   // display the root help of a CLI
-  shortcuts = config.get("shortcuts");
+  shortcuts = Shortcuts.get();
 
   showRootHelp(): void {
     let rootTopics = this.sortedTopics;
